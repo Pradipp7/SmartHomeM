@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.postimg.cc/fy9bKg5j/background.jpg');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-section {
+            width: 45%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .greeting-container {
+            background-color: #c1fec1;
+            padding: 15px;
+            border-radius: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .greeting {
+            color: #f10101;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .greeting h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .greeting p {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: 32px;
+            color: #00A2E8;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .temperature-humidity {
+            background-color: white;
+            border-radius: 100px;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            margin: 0 auto;
+            gap: 5px;
+        }
+
+        .temperature-humidity div {
+            text-align: center;
+        }
+
+        .temperature-humidity img {
+            width: 50px;
+        }
+
+        .temperature-humidity p {
+            margin-top: 5px;
+        }
+
+        .temperature-humidity div p {
+            line-height: 1.2;
+        }
+
+        .light-control {
+            background-color: white;
+            border-radius: 15px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            justify-content: center;
+            width: 250px;
+            margin: 20px auto;
+        }
+
+        .light-control img {
+            width: 80px;
+        }
+
+        #light-off {
+            width: 50px;
+        }
+
+        .light-control button {
+            background: none;
+            border: none;
+            margin-left: 10px;
+            background-size: contain;
+            width: 80px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .right-section {
+            width: 45%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .energy-usage {
+            background-color: #D9D9D9;
+            border-radius: 10px;
+            padding: 30px;
+            width: 320px;
+            height: 220px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .energy-usage-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .energy-usage-header img.lightning {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .energy-usage-header h3 {
+            margin: 0;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .energy-usage p {
+            font-size: 40px;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .energy-usage span {
+            display: block;
+            font-size: 24px;
+        }
+
+        .house-section img {
+            width: 400px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="header">
+                <img src="https://i.postimg.cc/x1PtnLzn/file.png" alt="BM Logo">
+            </div>
+
+            <div class="greeting-container">
+                <div class="greeting">
+                    <h1 id="greeting">Good Morning!</h1>
+                    <p id="date-time"></p>
+                </div>
+            </div>
+
+            <div class="welcome-message">
+                Welcome home!
+            </div>
+
+            <div class="temperature-humidity">
+                <div>
+                    <img src="https://i.postimg.cc/25rB5mTp/temp.jpg" alt="Temperature">
+                    <p>Temperature<br>27°C</p>
+                </div>
+                <div>
+                    <img src="https://i.postimg.cc/nL29j5wX/water.jpg" alt="Humidity">
+                    <p>Humidity<br>24%</p>
+                </div>
+            </div>
+
+            <div class="light-control">
+                <img id="light-bulb" src="https://i.postimg.cc/wvByhVS0/led-on.jpg" alt="Light On">
+                <img id="light-off" src="https://i.postimg.cc/sgFht5hg/led-off.jpg" alt="Light Off" style="display: none;">
+                <button id="toggle-light" style="background-image: url('https://i.postimg.cc/L8z1RhtB/on.jpg');"></button>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="energy-usage">
+                <div class="energy-usage-header">
+                    <img class="lightning" src="https://i.postimg.cc/3xhnstWt/lightning-removebg-preview.png" alt="Lightning">
+                    <h3>Energy Usage</h3>
+                </div>
+                <p>250</p>
+                <span>W</span>
+            </div>
+
+            <div class="house-section">
+                <img src="https://i.postimg.cc/VNL465qM/house-removebg-preview.png" alt="House">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            const greetingElement = document.getElementById('greeting');
+            const dateTimeElement = document.getElementById('date-time');
+
+            if (hours >= 0 && hours < 12) {
+                greetingElement.textContent = 'Good Morning!';
+            } else if (hours >= 12 && hours < 18) {
+                greetingElement.textContent = 'Good Afternoon!';
+            } else {
+                greetingElement.textContent = 'Good Evening!';
+            }
+
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const date = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            dateTimeElement.textContent = `${time} | ${date}`;
+        }
+
+        updateGreeting();
+        setInterval(updateGreeting, 60000);
+
+        const lightBulb = document.getElementById('light-bulb');
+        const lightOff = document.getElementById('light-off');
+        const toggleButton = document.getElementById('toggle-light');
+        let isLightOn = true;
+
+        toggleButton.addEventListener('click', function() {
+            if (isLightOn) {
+                lightBulb.style.display = 'none';
+                lightOff.style.display = 'block';
+                toggleButton.style.backgroundImage = "url('https://i.postimg.cc/654ZjMTP/off.jpg')";
+                isLightOn = false;
+            } else {
+                lightBulb.style.display = 'block';
+                lightOff.style.display = 'none';
+                toggleButton.style.backgroundImage = "url('https://i.postimg.cc/L8z1RhtB/on.jpg')";
+                isLightOn = true;
+            }
+        });
+    </script>
+</body>
+</html>
