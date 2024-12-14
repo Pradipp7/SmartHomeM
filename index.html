@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeSimple Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.postimg.cc/6qPjp3SZ/IMG-6179.png') no-repeat center center fixed; 
+      background-size: cover;
+      color: #333;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #ecffb733;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 100px; 
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .logo-text {
+      font-size: 24px; 
+      font-weight: bold;
+    }
+
+    .logo-text .home {
+      color: #1d6fa6;
+    }
+
+    .logo-text .simple {
+      color: #4caf50;
+    }
+
+    .main {
+      padding: 20px;
+    }
+
+    /* Good Morning Section */
+    #greeting {
+      font-size: 40px;
+      font-weight: bold;
+      color: #1d6fa6;
+    }
+
+    /* Welcome Home Section */
+    .welcomehome {
+      font-size: 30px;
+      font-weight: bold;
+      color: #1d6fa6;
+    }
+
+    /* Time Section */
+    .time {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      color: #438445;
+    }
+
+    .time .time-icon {
+      width: 40px;
+      height: auto;
+      margin-left: auto;
+    }
+
+    /* Current Date Section */
+    #currentDate {
+      color: black;
+    }
+
+    .time .date-icon {
+      width: 60px;
+      height: auto;
+      margin-left: auto;
+    }
+
+    /* Data Section (Temperature & Humidity) */
+    .data {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Left side section (text and number) */
+    .data .info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .data .info p {
+      margin: 0;
+    }
+
+    /* Right side section (image) */
+    .data .image {
+      display: flex;
+      justify-content: flex-end;
+      width: 90px; /* Set width for the image section */
+    }
+
+    .data img {
+      width: 90px; /* Make image bigger */
+      height: auto;
+    }
+
+    .data .divider {
+      width: 2px; 
+      height: 100px; 
+      background-color: #4caf50; 
+      margin: 0 15px;
+    }
+
+    /* Light control section */
+    .light-control {
+      margin: 40px auto 20px; /* Added margin-top to create space from temperature block */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 25px;
+      background: #ccc;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2.5px;
+      left: 2.5px;
+      transition: all 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: #4caf50;
+    }
+
+    .toggle-switch.active::before {
+      transform: translateX(25px);
+    }
+
+    /* Green color for Temperature and Humidity labels */
+    .temperature-label, .humidity-label {
+      color: #4caf50;
+    }
+
+    /* Image for the light bulb */
+    .light-bulb {
+      width: 100px;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/5fFX4hqx/IMG-6155.png" alt="Logo" class="logo">
+      <div class="logo-text">
+        <span class="home">Home</span><span class="simple">Simple</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- Greeting Section -->
+    <p id="greeting"></p>
+
+    <!-- Current Time Section -->
+    <div class="time">
+      <p id="currentTime"></p>
+      <img src="https://i.ibb.co/HgWHQqR/IMG-6185.png" alt="Clock Icon" class="time-icon">
+    </div>
+
+    <!-- Current Date Section -->
+    <div class="time">
+      <p id="currentDate"></p>
+      <img src="https://i.ibb.co/LPZbW6H/IMG-6186.png" alt="Calendar Icon" class="date-icon">
+    </div>
+
+    <!-- Welcome Home Text -->
+    <div class="welcomehome">
+      <p>Welcome home!</p>
+    </div>
+
+    <!-- Data Section (Temperature & Humidity) -->
+    <div class="data">
+      <!-- Temperature Section -->
+      <div class="info">
+        <div>
+          <p class="temperature-label">Temperature</p>
+          <p><strong id="temperatureValue">27.00 &#8451;</strong></p>
+        </div>
+        <div class="image">
+          <img src="https://i.postimg.cc/d06qfjM0/IMG-6156.png" alt="Temperature Icon">
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+
+      <!-- Humidity Section -->
+      <div class="info">
+        <div>
+          <p class="humidity-label">Humidity</p>
+          <p><strong id="humidityValue">24.00%</strong></p>
+        </div>
+        <div class="image">
+          <img src="https://i.postimg.cc/tTgXGnyN/IMG-6161.png" alt="Humidity Icon">
+        </div>
+      </div>
+    </div>
+
+    <!-- Light Control Section -->
+    <div class="light-control">
+      <img id="lightIcon" class="light-bulb" src="https://i.postimg.cc/7ZgP3ym0/IMG-6164.png" alt="Light Bulb">
+      <div class="toggle-switch" id="lightToggle"></div>
+    </div>
+  </div>
+
+  <script>
+    // Update the greeting based on time
+    function updateGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+      const greeting = hours < 12 ? "Good Morning!" : hours < 18 ? "Good Afternoon!" : "Good Evening!";
+      document.getElementById('greeting').textContent = greeting;
+    }
+
+    // Update the time in HH:MM format
+    function updateTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const timeString = `${hours}:${minutes}`;
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // Update the date in full format (e.g., Monday, December 1, 2024)
+    function updateDate() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateString = now.toLocaleDateString('en-US', options);
+      document.getElementById('currentDate').textContent = dateString;
+    }
+
+    // Update the temperature and humidity (simulated data)
+    function updateSensorData() {
+      const temperature = 27; // Simulated temperature value
+      const humidity = 24; // Simulated humidity value
+      document.getElementById('temperatureValue').textContent = `${temperature} \u2103`;
+      document.getElementById('humidityValue').textContent = `${humidity}%`;
+    }
+
+    // Light control toggle
+    const lightToggle = document.getElementById('lightToggle');
+    const lightIcon = document.getElementById('lightIcon');
+    lightToggle.addEventListener('click', () => {
+      lightToggle.classList.toggle('active');
+      lightIcon.src = lightToggle.classList.contains('active')
+        ? "https://i.ibb.co/wgdmD76/IMG-6163.png" // Image when light is on
+        : "https://i.postimg.cc/7ZgP3ym0/IMG-6164.png"; // Image when light is off
+    });
+
+    // Initial function calls
+    updateGreeting();
+    updateTime();
+    updateDate();
+    updateSensorData();
+
+    // Set intervals for time and sensor data updates
+    setInterval(updateTime, 1000); // Update time every second
+    setInterval(updateDate, 3600000); // Update date every hour
+    setInterval(updateSensorData, 5000); // Update sensor data every 5 seconds
+  </script>
+  
+ 
+</body>
+</html>
